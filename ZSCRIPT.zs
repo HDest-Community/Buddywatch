@@ -16,7 +16,9 @@ class BuddyWatchHandler : StaticEventHandler
 
 		int OriginalWidth = StatusBar.HorizontalResolution;
 		int OriginalHeight = StatusBar.VerticalResolution;
+		bool OriginalFullscreen = StatusBar.FullscreenOffsets;
 
+		StatusBar.FullscreenOffsets = true;
 		vector2 StartOffset = (-6, 3);
 		for (int i = 0; i < MAXPLAYERS; ++i)
 		{
@@ -30,6 +32,8 @@ class BuddyWatchHandler : StaticEventHandler
 			DrawHealthTicker(StatusBar, plr, (StartOffset.x - 8, StartOffset.y + 14), StatusBar.DI_SCREEN_RIGHT_TOP);
 			StartOffset.y += 22;
 		}
+
+		StatusBar.FullscreenOffsets = OriginalFullscreen;
 	}
 
 	// [Ace] Copy-pasted from HD.
