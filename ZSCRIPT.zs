@@ -48,6 +48,14 @@ class BuddyWatchHandler : StaticEventHandler
 			HealthBars[Extra + (HDStatusBar.STB_BEATERSIZE - 2)] = clamp(18 - (plr.bloodloss >> 7) - (err >> 2), 1, 18);
 			HealthBars[Extra + (HDStatusBar.STB_BEATERSIZE - 1)] = (plr.inpain ? random[heart](1, 7) : 1) + err + random[heart](0, plr.bloodpressure >> 3);
 		}
+		
+		if (plr.Health <= 0)
+		{
+			for (int i = 0; i < HDStatusBar.STB_BEATERSIZE; ++i)
+			{
+				HealthBars[Extra + i] = 1;
+			}
+		}
 
 		for (int i = 0; i < HDStatusBar.STB_BEATERSIZE; ++i)
 		{
