@@ -21,7 +21,7 @@ class BuddyWatchHandler : StaticEventHandler
 		for (int i = 0; i < MAXPLAYERS; ++i)
 		{
 			let plr = HDPlayerPawn(players[i].mo);
-			if (!plr/* || StatusBar.CPlayer.mo == plr*/)
+			if (!plr || StatusBar.CPlayer.mo == plr)
 			{
 				continue;
 			}
