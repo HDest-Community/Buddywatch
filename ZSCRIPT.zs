@@ -29,6 +29,18 @@ class BuddyWatchHandler : StaticEventHandler
 			StatusBar.DrawString(MainFont, plr.player.GetUserName(), off, StatusBar.DI_SCREEN_RIGHT_TOP | StatusBar.DI_TEXT_ALIGN_RIGHT, scale: (0.75, 0.75));
 			DrawHealthTicker(StatusBar, plr, (off.x - 8, off.y + 14), StatusBar.DI_SCREEN_RIGHT_TOP);
 			StatusBar.DrawString(MainFont, StatusBar.FormatNumber(int(plr.enc), 1, 8), (off.x - 16, off.y + 8), StatusBar.DI_SCREEN_RIGHT_TOP | StatusBar.DI_TEXT_ALIGN_RIGHT, plr.overloaded < 0.8 ? Font.CR_OLIVE : plr.overloaded>1.6 ? Font.CR_RED : Font.CR_GOLD, scale: (0.75, 0.75));
+			
+			double addOff = off.y + 7 + MainFont.mFont.GetHeight();
+
+			StatusBar.Fill(Color(128, 96, 96, 96), off.x - 14, addOff + 1, -20, 1, StatusBar.DI_SCREEN_RIGHT_TOP | StatusBar.DI_ITEM_RIGHT);
+			StatusBar.Fill(Color(128, 96, 96, 96), off.x - 14, addOff + 2, -1, 1, StatusBar.DI_SCREEN_RIGHT_TOP | StatusBar.DI_ITEM_RIGHT);
+
+			StatusBar.Fill(plr.player.GetDisplayColor() | 0xFF000000, off.x - 15, addOff + 2, -min(plr.maxpocketspace, plr.pocketenc) * 19 / plr.maxpocketspace, 1, StatusBar.DI_SCREEN_RIGHT_TOP | StatusBar.DI_ITEM_RIGHT);
+
+			bool overenc = plr.flip && plr.pocketenc > plr.maxpocketspace;
+			StatusBar.Fill(overenc ? Color(255, 216, 194, 42) : Color(128, 96, 96, 96), off.x - 34, addOff + 2, overenc ? 2 : 1, 1, StatusBar.DI_SCREEN_RIGHT_TOP | StatusBar.DI_ITEM_RIGHT);
+			StatusBar.Fill(Color(128, 96, 96, 96), off.x - 14, addOff + 3, -20, 1, StatusBar.DI_SCREEN_RIGHT_TOP | StatusBar.DI_ITEM_RIGHT);
+
 			off.y += 22;
 		}
 
