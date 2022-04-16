@@ -14,12 +14,10 @@ class BuddyWatchHandler : StaticEventHandler
 
 		MainFont = HUDFont.Create("SMALLFONT");
 
-		int OriginalWidth = StatusBar.HorizontalResolution;
-		int OriginalHeight = StatusBar.VerticalResolution;
 		bool OriginalFullscreen = StatusBar.FullscreenOffsets;
 
 		StatusBar.FullscreenOffsets = true;
-		vector2 StartOffset = (-6, 3);
+		vector2 off = (-6, 3);
 		for (int i = 0; i < MAXPLAYERS; ++i)
 		{
 			let plr = HDPlayerPawn(players[i].mo);
@@ -28,9 +26,10 @@ class BuddyWatchHandler : StaticEventHandler
 				continue;
 			}
 
-			StatusBar.DrawString(MainFont, plr.player.GetUserName(), StartOffset, StatusBar.DI_SCREEN_RIGHT_TOP | StatusBar.DI_TEXT_ALIGN_RIGHT, scale: (0.75, 0.75));
-			DrawHealthTicker(StatusBar, plr, (StartOffset.x - 8, StartOffset.y + 14), StatusBar.DI_SCREEN_RIGHT_TOP);
-			StartOffset.y += 22;
+			StatusBar.DrawString(MainFont, plr.player.GetUserName(), off, StatusBar.DI_SCREEN_RIGHT_TOP | StatusBar.DI_TEXT_ALIGN_RIGHT, scale: (0.75, 0.75));
+			DrawHealthTicker(StatusBar, plr, (off.x - 8, off.y + 14), StatusBar.DI_SCREEN_RIGHT_TOP);
+			StatusBar.DrawString(MainFont, StatusBar.FormatNumber(int(plr.enc), 1, 8), (off.x - 16, off.y + 8), StatusBar.DI_SCREEN_RIGHT_TOP | StatusBar.DI_TEXT_ALIGN_RIGHT, plr.overloaded < 0.8 ? Font.CR_OLIVE : plr.overloaded>1.6 ? Font.CR_RED : Font.CR_GOLD, scale: (0.75, 0.75));
+			off.y += 22;
 		}
 
 		StatusBar.FullscreenOffsets = OriginalFullscreen;
