@@ -28,7 +28,7 @@ class BuddyWatchHandler : StaticEventHandler
 
 			StatusBar.DrawString(MainFont, plr.player.GetUserName(), off, StatusBar.DI_SCREEN_RIGHT_TOP | StatusBar.DI_TEXT_ALIGN_RIGHT, scale: (0.75, 0.75));
 			DrawHealthTicker(StatusBar, plr, (off.x - 8, off.y + 14), StatusBar.DI_SCREEN_RIGHT_TOP);
-			StatusBar.DrawString(MainFont, StatusBar.FormatNumber(int(plr.enc), 1, 8), (off.x - 16, off.y + 8), StatusBar.DI_SCREEN_RIGHT_TOP | StatusBar.DI_TEXT_ALIGN_RIGHT, plr.overloaded < 0.8 ? Font.CR_OLIVE : plr.overloaded>1.6 ? Font.CR_RED : Font.CR_GOLD, scale: (0.75, 0.75));
+			StatusBar.DrawString(MainFont, StatusBar.FormatNumber(int(plr.enc), 1, 8), (off.x - 16, off.y + 8), StatusBar.DI_SCREEN_RIGHT_TOP | StatusBar.DI_TEXT_ALIGN_RIGHT, plr.overloaded < 0.8 ? Font.CR_OLIVE : plr.overloaded > 1.6 ? Font.CR_RED : Font.CR_GOLD, scale: (0.75, 0.75));
 			
 			double addOff = off.y + 7 + MainFont.mFont.GetHeight();
 
