@@ -92,7 +92,11 @@ class BuddyWatchHandler : StaticEventHandler
 		}
 		
 		string suffix = "ST"..(4 - min(plr.health / 20, 4)).."1";
-		if (plr.health < 1)
+		if (plr.player.cheats & (CF_GODMODE | CF_GODMODE2) || plr.binvulnerable)
+		{
+			suffix = "GOD0";
+		}
+		else if (plr.health < 1)
 		{
 			suffix = "DEAD0";
 		}
